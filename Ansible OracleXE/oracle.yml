@@ -1,0 +1,65 @@
+- hosts: 169.61.246.45
+  become: yes
+
+  vars:
+    password: "Passw0rd"
+
+  tasks:
+    - name: Install a list of packages
+      yum:
+        name:
+          - python
+          - python3
+        state: present
+      async: 90
+      poll: 15
+
+    - pip:
+        name: pexpect==3.3
+
+    - name: Download preinstall rpm
+      shell:
+        cmd: curl -o oracle-database-preinstall-18c-1.0-1.el7.x86_64.rpm https://yum.oracle.com/repo/OracleLinux/OL7/latest/x86_64/getPackage/oracle-database-preinstall-18c-1.0-1.el7.x86_64.rpm
+
+    - name: install preinstall config
+      yum:
+        name: /root/oracle-database-preinstall-18c-1.0-1.el7.x86_64.rpm
+        state: present
+      async: 180
+      poll: 15
+
+    - name: installer exists ?
+      stat:
+        path: /root/oracle-database-xe-18c-1.0-1.x86_64.rpm
+      register: stat_result
+
+
+    - name: Download installer oracle xe 18c
+      get_url:
+        url: https://download.oracle.com/otn-pub/otn_software/db-express/oracle-database-xe-18c-1.0-1.x86_64.rpm
+        dest: /root
+      when: stat_result.stat.exists == False
+      async: 900
+      poll: 60
+
+    - name: install database
+      yum:
+        name: /root/oracle-database-xe-18c-1.0-1.x86_64.rpm
+        state: present
+      async: 900
+      poll: 60
+
+    - name: config database
+      shell: (echo '{{password}}'; echo '{{password}}';) | /etc/init.d/oracle-xe-18c configure
+      register: result
+      until: result.rc == 0
+      retries: 3
+      delay: 1
+      async: 900
+      poll: 60
+
+    - name: config enviroments vars
+      shell: |
+        export ORACLE_SID=XE 
+        export ORAENV_ASK=NO 
+        . /opt/oracle/product/18c/dbhomeXE/bin/oraenv
