@@ -83,7 +83,7 @@ ansible-playbook -i hosts oracle.yml
 
 ### 4. Despliegue y configuración de la imagen WebsPhere en el cluster de kubernetes
 
-**a.**	Obtenga la imagen de WebPhere localmente ejecutando el siguiente comando.
+**a.**	Obtenga la imagen de WebsPhere localmente ejecutando el siguiente comando.
 
 ```
 docker pull websphere-liberty
