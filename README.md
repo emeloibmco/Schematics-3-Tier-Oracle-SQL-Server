@@ -126,7 +126,6 @@ kubectl expose deployment/websphere-liberty --type=LoadBalancer --name=lb-svc  -
 
 # Referencias 📖
 
-* [Pagina de joomla](https://www.joomla.org/about-joomla.html).
-* [Guia para la instalación de mysql](https://linuxize.com/post/how-to-install-mysql-on-ubuntu-18-04/).
+* [Guia para la instalación de OracleXE](https://docs.oracle.com/en/database/oracle/oracle-database/18/xeinl/procedure-installing-oracle-database-xe.html).
 * [Instalación de ansible en SO Ubuntu](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-ansible-on-ubuntu).
 * [Modulos de ansible](https://docs.ansible.com/ansible/latest/modules/).
