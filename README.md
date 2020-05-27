@@ -43,7 +43,7 @@ Allí debera proporcional un nombre, las etiquetas que desee, la descripción y 
 <img width="400" alt="img8" src="https://user-images.githubusercontent.com/40369712/78298384-d1926d80-74f7-11ea-88d6-877e7202ca48.png">
 </p>
 
-Ingrese la [URL del git](https://github.com/emeloibmco/Schematics-VPC-Schematics-3-Tier-Oracle-SQL-Server/tree/master/Terraform) donde se encuentra la plantilla de despliegue de terraform y presione recuperar variables de entrada.
+Ingrese la [URL del git](https://github.com/emeloibmco/Schematics-3-Tier-Oracle-SQL-Server/tree/master/Terraform) donde se encuentra la plantilla de despliegue de terraform y presione recuperar variables de entrada.
 
 <p align="center">
 <img width="400" alt="img8" src="https://user-images.githubusercontent.com/40369712/78303221-e116b400-7501-11ea-9d71-6d2ce8610c74.png">
