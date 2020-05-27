@@ -23,7 +23,7 @@ Como caracteristicas especificas de este laboratorio se uso:
 Con el fin de ilustrar los recursos necesarios para el despliegue de la plataforma Joomla, a continuación de muestra un diagrama.
 
 <p align="center">
-<img width="500" alt="img8" src="https://user-images.githubusercontent.com/40369712/78384024-0ad1e880-759f-11ea-98fb-5693f2c9a60e.png">
+<img width="512" alt="was-oracle" src="https://user-images.githubusercontent.com/60987042/83075046-d166a800-a038-11ea-91bf-c3dd642c0923.PNG">
 </p>
 
 ---
