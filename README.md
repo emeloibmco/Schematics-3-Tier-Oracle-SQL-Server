@@ -18,7 +18,7 @@ Como caracteristicas especificas de este laboratorio se uso:
 
 ---
 
-### 2. Arquitectura de implementación
+### 1. Arquitectura de implementación
 
 Con el fin de ilustrar los recursos necesarios para el despliegue de la plataforma Joomla, a continuación de muestra un diagrama.
 
@@ -28,7 +28,7 @@ Con el fin de ilustrar los recursos necesarios para el despliegue de la platafor
 
 ---
 
-### 3. Ejecución de la plantilla de terraform en IBM Cloud Schematics
+### 2. Ejecución de la plantilla de terraform en IBM Cloud Schematics
 
 Ingrese a IBM Cloud para crear un espacio de trabajo en [Schematics](https://cloud.ibm.com/schematics/workspaces) y seleccione crear espacio de trabajo.
 
@@ -63,7 +63,7 @@ Una vez creado el espacio de trabajo, presione generar plan y posteriormente apl
 
 ---
 
-### 4. Ejecución del playbook de ansible para la configuración de OracleXE en el virtual server
+### 3. Ejecución del playbook de ansible para la configuración de OracleXE en el virtual server
 
 Antes de ejecutar el playbook debe configurarse la llave ssh, la dirección ip del virtual server.
 
@@ -81,7 +81,7 @@ ansible-playbook -i hosts oracle.yml
 
 ---
 
-### 5. Despliegue y configuración de la imagen WebsPhere en el cluster de kubernetes
+### 4. Despliegue y configuración de la imagen WebsPhere en el cluster de kubernetes
 
 **a.**	Obtenga la imagen de WebPhere localmente ejecutando el siguiente comando.
 
