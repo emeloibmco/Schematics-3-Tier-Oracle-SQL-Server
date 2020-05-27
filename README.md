@@ -46,7 +46,7 @@ Allí debera proporcional un nombre, las etiquetas que desee, la descripción y 
 Ingrese la [URL del git](https://github.com/emeloibmco/Schematics-3-Tier-Oracle-SQL-Server/tree/master/Terraform) donde se encuentra la plantilla de despliegue de terraform y presione recuperar variables de entrada.
 
 <p align="center">
-<img width="400" alt="img8" src="https://user-images.githubusercontent.com/40369712/78303221-e116b400-7501-11ea-9d71-6d2ce8610c74.png">
+<img width="508" alt="Plant" src="https://user-images.githubusercontent.com/60987042/83075581-bc3e4900-a039-11ea-8cfa-4be8c2e3dcab.PNG">
 </p>
 
 Ingrese en los campos las variables necesarias para el despliegue, en este caso el API key de infraestructura, la llave publica ssh y el grupo de recursos.
