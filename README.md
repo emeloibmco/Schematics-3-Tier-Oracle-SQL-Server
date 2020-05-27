@@ -11,20 +11,10 @@ Como caracteristicas especificas de este laboratorio se uso:
 
 ## Indice
 
-* Acerca de joomla
 * Arquitectura de implementación
 * Ejecución de la plantilla de terraform en IBM Cloud Schematics
 * Ejecución del playbook de ansible para la configuración de mysql en el virtual server
 * Despliegue y configuración de la imagen joomla en el cluster de kubernetes
-
----
-
-### 1. Acerca de joomla
-
-
-Joomla! es un sistema de administración de contenido (CMS) gratuito y de código abierto para publicar contenido web. Con los años Joomla! ha ganado varios premios . Se basa en un marco de aplicación web modelo-vista-controlador que se puede usar independientemente del CMS que le permite crear potentes aplicaciones en línea.
-
-Joomla! es uno de los softwares de sitios web más populares, gracias a su comunidad global de desarrolladores y voluntarios, que se aseguran de que la plataforma sea fácil de usar, ampliable, multilingüe, accesible, receptiva, optimizada para motores de búsqueda y mucho más. [referencia.](https://www.joomla.org/about-joomla.html)
 
 ---
 
@@ -53,7 +43,7 @@ Allí debera proporcional un nombre, las etiquetas que desee, la descripción y 
 <img width="400" alt="img8" src="https://user-images.githubusercontent.com/40369712/78298384-d1926d80-74f7-11ea-88d6-877e7202ca48.png">
 </p>
 
-Ingrese la [URL del git](https://github.com/emeloibmco/Schematics-VPC-Schematics-3-Tier-App-Joomla/tree/master/Terraform) donde se encuentra la plantilla de despliegue de terraform y presione recuperar variables de entrada.
+Ingrese la [URL del git](https://github.com/emeloibmco/Schematics-VPC-Schematics-3-Tier-Oracle-SQL-Server/tree/master/Terraform) donde se encuentra la plantilla de despliegue de terraform y presione recuperar variables de entrada.
 
 <p align="center">
 <img width="400" alt="img8" src="https://user-images.githubusercontent.com/40369712/78303221-e116b400-7501-11ea-9d71-6d2ce8610c74.png">
@@ -96,50 +86,40 @@ ansible-playbook -i hosts oracle.yml
 **a.**	Obtenga la imagen de WebPhere localmente ejecutando el siguiente comando.
 
 ```
-docker pull websphere
+docker pull websphere-liberty
 ```
 
 **b.**	Etiquete la imagen de Docker que acaba de añadir a su repositorio local para que sea compatible con el formato requerido por IBM, ejecute el siguiente comando:
 
 ```
 docker tag <nombre_imagen_local> us.icr.io/<namespace>/<nombre_imagen>
-Ejemplo: docker tag joomla us.icr.io/pruebanamespace/joomla
+Ejemplo: docker tag websphere-liberty us.icr.io/webspherens/websphere-liberty
 ```
 
 **c.**	Realice el push de la imagen que acaba de crear al cr de IBM Cloud.
 
 ```
 docker push us.icr.io/<namespace>/<nombre_imagen>
-Ejemplo: docker push us.icr.io/pruebanamespace/joomla
+Ejemplo: docker push us.icr.io/webspherens/websphere-liberty
 ```
 
 **d.**	Cree el despliegue de la imagen.
 
 ```
 kubectl create deployment <nombre_despliegue> --image=us.icr.io/<namespace>/<imagen>
-Ejemplo: kubectl create deployment joomla --image=us.icr.io/pruebanamespace/Joomla
+Ejemplo: kubectl create deployment websphere-liberty --image=us.icr.io/webspherens/websphere-liberty
 ```
 
-**e.**	Configure las variables de entorno de la conexión con la base de datos.
-
-Para esto debe verificar la dirección de IP privada del virtual server en el que esta alojada la base de datos.
+**e.**	Exponga el servicio del despliegue.
 
 ```
-kubectl set env deployment/joomla JOOMLA_DB_HOST=10.240.0.12:3306
-kubectl set env deployment/joomla JOOMLA_DB_PASSWORD=joomla
-kubectl set env deployment/joomla JOOMLA_DB_USER=joomla
+kubectl expose deployment/websphere-liberty --type=NodePort --port=80
 ```
 
-**f.**	Exponga el servicio del despliegue.
+**f.**	Exponga un balanceador de carga para hacer visible el despliegue de forma pública.
 
 ```
-kubectl expose deployment/joomla --type=NodePort --port=80
-```
-
-**g.**	Exponga un balanceador de carga para hacer visible el despliegue de forma pública.
-
-```
-kubectl expose deployment/joomla --type=LoadBalancer --name=hw-lb-svc  --port=80 --target-port=80
+kubectl expose deployment/websphere-liberty --type=LoadBalancer --name=lb-svc  --port=80 --target-port=32692
 ```
 
 ---
